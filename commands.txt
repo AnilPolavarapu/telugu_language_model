@@ -1,0 +1,7 @@
+text2wfreq <input.txt >input.wfreq
+wfreq2vocab -top 60000 <input.wfreq >input.vocab
+text2idngram -vocab input.vocab -idngram input.idngram <input.txt
+idngram2lm -vocab_type 1 -idngram input.idngram -vocab input.vocab -binary telugu.lm
+#sphinx_lm_convert -i telugu.lm -o telugu.bin
+
+echo "perplexity -text test.txt" | evallm -binary telugu.lm
