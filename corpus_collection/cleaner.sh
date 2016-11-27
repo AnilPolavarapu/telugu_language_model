@@ -12,7 +12,7 @@ do
   if [ -s $f ]; then
     cp $f $f.tmp
     sed -i 's/\o00//g' $f.tmp
-    sed -i 's/&#8204;//g' $f.tmp
+    sed -i 's/&#[0-9]{4};//g' $f.tmp
     sed -i 's/&nbsp;//g' $f.tmp
     sed -i 's/&amp;//g' $f.tmp
     sed -i 's/[a-zA-Z]*//g' $f.tmp
@@ -20,7 +20,15 @@ do
     sed -i 's/\.\.\.//g' $f.tmp
     sed -i 's/[!]*//g' $f.tmp
     sed -i 's/[0-9]*//g' $f.tmp
-    sed -i 's/[,|:-()@%?]*//g' $f.tmp
+    sed -i 's/[,|:-]//g' $f.tmp
+    sed -i 's/[()]/ /g' $f.tmp
+    sed -i 's/@//g' $f.tmp
+    sed -i 's/%//g' $f.tmp
+    sed -i 's/?//g' $f.tmp
+    sed -i 's/*//g' $f.tmp
+    sed -i 's/\///g' $f.tmp
+    sed -i 's/=//g' $f.tmp
+    #sed -i 's/[@%\?\*]*//g' $f.tmp
     sed -i "s/'//g" $f.tmp
     sed -i 's/"//g' $f.tmp
     sed -i 's/&#;//g' $f.tmp
